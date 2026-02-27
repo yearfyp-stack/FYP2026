@@ -1,38 +1,34 @@
-.App {
-  text-align: center;
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ArtifactProvider } from './context/ArtifactContext';
+import Navbar from './components/layout/Navbar';
+import Cursor from './components/ui/Cursor';
+import Home from './pages/Home';
+import Explore from './pages/Explore';
+import Collections from './pages/Collections';
+import ArtifactDetail from './pages/ArtifactDetail';
+import About from './pages/About';
+import Footer from './components/layout/Footer';
+
+function App() {
+  return (
+    <ArtifactProvider>
+      <Router>
+        <Cursor />
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/"                    element={<Home />} />
+            <Route path="/explore"             element={<Explore />} />
+            <Route path="/collections"         element={<Collections />} />
+            <Route path="/artifact/:id"        element={<ArtifactDetail />} />
+            <Route path="/about"               element={<About />} />
+          </Routes>
+        </main>
+        <Footer />
+      </Router>
+    </ArtifactProvider>
+  );
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+export default App;
